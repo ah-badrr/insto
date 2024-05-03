@@ -2,17 +2,12 @@ import "./App.css";
 import Home from "./pages/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
-import Post from "./pages/Post";
 import Message from "./pages/Message";
 import Profile from "./pages/Profile";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import AddUser from "./components/AddUser";
-import EditUser from "./components/EditUser";
 import Explore from "./pages/Explore";
-import Search from "./pages/Search";
 import AddPost from "./components/AddPost";
-import PostDetail from "./components/PostDetail";
 import NotFound from "./components/NotFound";
 import EditProfile from "./components/EditProfile";
 import EditPost from "./components/EditPost";
@@ -39,13 +34,10 @@ function App() {
           <Route path="/post/:uid" element={<AddPost />} />
           <Route path="/post/:uid/:id" element={<EditPost />} />
           <Route path="/explore/:uid" element={<Explore />} />
-          <Route path="/search/:uid" element={<Search />} />
           <Route path="/message/:uid" element={<Message />} />
           <Route path="/messages/:uid/:id" element={<MessageCard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/add" element={<AddUser />} />
-          <Route path="/edit/:id" element={<EditUser />} />
           <Route path="/:uid/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

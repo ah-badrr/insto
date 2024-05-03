@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MessageCard = () => {
   const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState([]);
   const [userTwo, setUserTwo] = useState([]);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState([]);
@@ -35,8 +36,13 @@ const MessageCard = () => {
       const prof2 = await axios.get(`http://localhost:5000/profiles/user/${id}`);
       const user2 = await axios.get(`http://localhost:5000/users/${id}`);
       setUserTwo(user2.data);
-      setProfileTwo(prof2.data);
-      setProfileOne(prof1.data);
+      if (prof2.data != null) {
+        setProfileTwo(prof2.data);
+      }
+      if (prof1.data != null) {
+        
+        setProfileOne(prof1.data);
+      }
       setMessages(response.data);
       // getUserTwo();
       // getProfileOne();
@@ -47,7 +53,7 @@ const MessageCard = () => {
   const postMessage = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:5000/messages`, {
+      await axios.post(`http://localhost:5000/messages`, {
         userId: uid,
         toId: id,
         message: message,
@@ -82,36 +88,39 @@ const MessageCard = () => {
     <Layout>
       <div className="row message m-0 m-auto" style={{ overflow: "hidden", width: "100%", height: "100%" }}>
         <div className="list col-3 col-sm-4 col-md-3 is-flex gap-2 p-0 is-flex-direction-column " style={{ borderRight: "1.5px solid #0000002f", overflowY: "auto", height: "100%" }}>
-          <div className="table table-hover m-0" style={{ height: "max-content" }}>
-            <thead className="border-none border-0">
-              <tr className="border-none border-0">
-                <td className="border-none border-0" style={{ width: "100%" }}></td>
-                <td className="border-none border-0"></td>
-              </tr>
-            </thead>
+          <table className="table table-hover m-0" style={{ height: "max-content" }}>
             <tbody>
-              {users.map((user) => {
-                if (user.id != uid) {
-                  return (
-                    <tr className="contact p-0" style={{ width: "100%" }}>
-                      <td colSpan="2" className="border-0" style={{ width: "100%" }}>
-                        <NavLink to={`/messages/${uid}/${user.id}`} className="con">
-                          <img class="rounded-circle" alt="" style={{ height: "64px", width: "64px", objectFit: "cover", objectPosition: "top" }} src={user.profile.url ? user.profile.url : profiled} />
-                          <p className="text-black username">{user.username}</p>
-                        </NavLink>
-                      </td>
-                    </tr>
-                  );
-                }
-              })}
+              <tr>
+                <td className="border-0 pt-3" >
+                  <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Cari Kontak" className="input mb-1" style={{ width: "100%" }} />
+                </td>
+              </tr>
+              {users
+                .filter((item) => {
+                  return search.toString().toLowerCase() == "" ? item : item.username.toString().toLowerCase().includes(search);
+                })
+                .map((user) => {
+                  if (user.id != uid) {
+                    return (
+                      <tr className="contact p-0" style={{ width: "100%" }}>
+                        <td className="border-0" style={{ width: "100%" }}>
+                          <NavLink to={`/messages/${uid}/${user.id}`} className="con">
+                            <img class="rounded-circle" alt="" style={{ height: "64px", width: "64px", objectFit: "cover", objectPosition: "top" }} src={user.profile ? (user.profile.url ? user.profile.url : profiled) : profiled} />
+                            <p className="text-black username">{user.username}</p>
+                          </NavLink>
+                        </td>
+                      </tr>
+                    );
+                  }
+                })}
             </tbody>
-          </div>
+          </table>
         </div>
         <div className="chat col p-0">
           <div className="card border-0 shadow-none rounded-0" style={{ height: "100%" }}>
             <div className="card-header">
               <figure class="image is-48x48">
-                <img className="is-rounded" alt="" src={profileTwo.url == null ? profiled : profileTwo.url} style={{ height: "48px", objectFit: "cover", objectPosition: "top" }} />
+                <img className="is-rounded" alt="" src={profileTwo ? (profileTwo.url ? profileTwo.url : profiled) : profiled} style={{ height: "48px", objectFit: "cover", objectPosition: "top" }} />
               </figure>
               <div className="card-header-title">{userTwo.username}</div>
             </div>

@@ -47,7 +47,7 @@ const Home = () => {
                   <div class="dropdown is-active dropPost d-none is-position-absolute " style={{ right: "0" }}>
                     <div class="dropdown-trigger">
                       <button class="button has-background-light pr-4 border-0" aria-haspopup="true" aria-controls="dropdown-menu">
-                        <FontAwesomeIcon  icon={faEllipsisVertical} className={``} style={{ cursor: "pointer" }}></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faEllipsisVertical} className={``} style={{ cursor: "pointer" }}></FontAwesomeIcon>
                       </button>
                     </div>
                     <div class="dropdown-menu" id="dropdown-menu" role="menu">

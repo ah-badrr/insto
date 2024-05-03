@@ -108,6 +108,7 @@
         align-items: center !important;
         gap: 2rem !important;
         box-shadow: 0 0 10px #000;
+        z-index: 99 !important;
 
         .logo {
             /* display: none !important; */
@@ -218,7 +219,7 @@
 
     .mdlpost {
         height: 100vh !important;
-        padding: 50px 0;
+        padding: 50px 0 100px;
         /* padding-top: 100px; */
         overflow-y: auto !important;
         /* align-items: start !important; */
@@ -301,6 +302,51 @@
                 padding-bottom: 60px;
             }
         }
+    }
+
+    .search {
+        position: fixed;
+        background-color: white;
+        width: 100vw;
+        z-index: 98 !important;
+        height: 300px;
+        bottom: -300px;
+        border-radius: 15px 15px 0 0;
+        padding: 20px;
+        box-shadow: 0 0 10px #0000006c;
+        transition: .5s !important;
+
+        &.active {
+            bottom: 50px;
+        }
+
+        .input {
+            width: 100%;
+        }
+
+        .list {
+            padding: 0px 0 10px;
+            height: 235px;
+            overflow-y: auto;
+
+            table {
+
+                tbody {
+                    tr {
+                        td {
+                            .con {
+                                display: flex;
+                                align-items: center;
+                                gap: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
     }
 
     .navout {
@@ -496,7 +542,40 @@
             }
 
             .card-footer {
-                padding-bottom: 0px;
+                padding-bottom: 10px;
+            }
+        }
+    }
+
+    .search {
+        width: 325px;
+        height: 100vh;
+        bottom: 0;
+        top: 0;
+        left: -325px;
+        border-radius: 0 15px 15px 0;
+
+        &.active {
+            left: 16.6vw;
+        }
+
+        .list {
+            padding: 0px 0 10px;
+            height: 91vh;
+            overflow-y: auto;
+
+            table {
+                tbody {
+                    tr {
+                        td {
+                            .con {
+                                display: flex;
+                                align-items: center;
+                                gap: 15px;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

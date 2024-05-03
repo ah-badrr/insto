@@ -211,7 +211,7 @@ const PostCards = ({ user, caption, id, createdAt, image, likes, type, comments,
               <div className="card-header-title is-flex is-justify-content-space-between">
                 <div className="is-flex gap-2 is-align-items-center">
                   <figure className="image is-32x32">
-                    <img src={profile.url ? profile.url : profiled} alt="" className="is-rounded" style={{ height: "32px", objectFit: "cover", objectPosition: "top" }} />
+                    <img src={profile ? (profile.url ? profile.url : profiled) : profiled} alt="" className="is-rounded" style={{ height: "32px", objectFit: "cover", objectPosition: "top" }} />
                   </figure>
                   <p>
                     {userById.username} <FontAwesomeIcon className="pb-1 ml-1 text-secondary" style={{ fontSize: "4px" }} icon={faCircle} />{" "}

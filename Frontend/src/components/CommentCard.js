@@ -26,7 +26,7 @@ const CommentCard = ({ id, created, username, comment }) => {
       {/* <figure class="image is-32x32"> */}
       {/* <CommentCard id={c.userId} /> */}
       <div className="is-flex gap-2">
-        <img src={profile.url ? profile.url : profiled} alt="" className="" style={{ borderRadius: "50%", height: "32px", width: "32px", objectFit: "cover", objectPosition: "center" }} />
+        <img src={profile ? (profile.url ? profile.url : profiled) : profiled} alt="" className="" style={{ borderRadius: "50%", height: "32px", width: "32px", objectFit: "cover", objectPosition: "center" }} />
         {/* </figure> */}
         <ul>
           <li className="text-bold has-text-weight-bold" style={{ fontSize: "15px" }}>
