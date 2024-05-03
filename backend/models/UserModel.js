@@ -8,6 +8,10 @@ const User = db.define(
   {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
+    bio: DataTypes.STRING,
+    job: DataTypes.STRING,
+    image: DataTypes.STRING,
+    url: DataTypes.STRING,
   },
   {
     freezeTableName: true,

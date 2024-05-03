@@ -10,11 +10,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const MessageCard = () => {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState([]);
-  const [userTwo, setUserTwo] = useState([]);
+  const [user2, setUser2] = useState([]);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState([]);
   const [profileTwo, setProfileTwo] = useState([]);
-  const [profileOne, setProfileOne] = useState([]);
+  const [user1, setUser1] = useState([]);
   const { uid, id } = useParams();
 
   useEffect(() => {
@@ -32,20 +32,20 @@ const MessageCard = () => {
   const getMessages = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/messages`);
-      const prof1 = await axios.get(`http://localhost:5000/profiles/user/${uid}`);
+      const user1 = await axios.get(`http://localhost:5000/users/${uid}`);
       const prof2 = await axios.get(`http://localhost:5000/profiles/user/${id}`);
       const user2 = await axios.get(`http://localhost:5000/users/${id}`);
-      setUserTwo(user2.data);
+      setUser2(user2.data);
       if (prof2.data != null) {
         setProfileTwo(prof2.data);
       }
-      if (prof1.data != null) {
+      if (user1.data != null) {
         
-        setProfileOne(prof1.data);
+        setUser1(user1.data);
       }
       setMessages(response.data);
-      // getUserTwo();
-      // getProfileOne();
+      // getuser2();
+      // getuser1();
       // getProfileTwo();
     } catch (error) {}
   };
@@ -105,7 +105,7 @@ const MessageCard = () => {
                       <tr className="contact p-0" style={{ width: "100%" }}>
                         <td className="border-0" style={{ width: "100%" }}>
                           <NavLink to={`/messages/${uid}/${user.id}`} className="con">
-                            <img class="rounded-circle" alt="" style={{ height: "64px", width: "64px", objectFit: "cover", objectPosition: "top" }} src={user.profile ? (user.profile.url ? user.profile.url : profiled) : profiled} />
+                            <img class="rounded-circle" alt="" style={{ height: "64px", width: "64px", objectFit: "cover", objectPosition: "top" }} src={user ? (user.url ? user.url : profiled) : profiled} />
                             <p className="text-black username">{user.username}</p>
                           </NavLink>
                         </td>
@@ -120,9 +120,9 @@ const MessageCard = () => {
           <div className="card border-0 shadow-none rounded-0" style={{ height: "100%" }}>
             <div className="card-header">
               <figure class="image is-48x48">
-                <img className="is-rounded" alt="" src={profileTwo ? (profileTwo.url ? profileTwo.url : profiled) : profiled} style={{ height: "48px", objectFit: "cover", objectPosition: "top" }} />
+                <img className="is-rounded" alt="" src={user2 ? (user2.url ? user2.url : profiled) : profiled} style={{ height: "48px", objectFit: "cover", objectPosition: "top" }} />
               </figure>
-              <div className="card-header-title">{userTwo.username}</div>
+              <div className="card-header-title">{user2.username}</div>
             </div>
             <div className="card-body is-flex gap-4 is-flex-direction-column" style={{ height: "100px", overflow: "auto" }}>
               {messages.map((m) => {
@@ -133,7 +133,7 @@ const MessageCard = () => {
                         <img
                           className="is-rounded"
                           alt=""
-                          src={m.userId == uid ? (profileOne.url == null ? profiled : profileOne.url) : profileTwo.url == null ? profiled : profileTwo.url}
+                          src={m.userId == uid ? (user1.url == null ? profiled : user1.url) : user2.url == null ? profiled : user2.url}
                           style={{ height: "32px", objectFit: "cover", objectPosition: "top" }}
                         />
                       </figure>

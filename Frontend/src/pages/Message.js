@@ -39,7 +39,7 @@ const Message = ({ child }) => {
                     <tr className="contact p-0 pt-2" style={{ width: "100%" }}>
                       <td className="border-0 " style={{ width: "100%" }}>
                         <NavLink to={`/messages/${uid}/${user.id}`} className="con">
-                          <img class="rounded-circle" alt="" style={{ height: "64px", width: "64px", objectFit: "cover", objectPosition: "top" }} src={user.profile != null ? (user.profile.url ? user.profile.url : profile) : profile} />
+                          <img class="rounded-circle" alt="" style={{ height: "64px", width: "64px", objectFit: "cover", objectPosition: "top" }} src={user != null ? (user.url ? user.url : profile) : profile} />
                           <p className="text-black username">{user.username}</p>
                         </NavLink>
                       </td>

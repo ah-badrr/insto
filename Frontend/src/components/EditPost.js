@@ -107,7 +107,7 @@ const EditPost = ({ state, btn, cancel, share }) => {
                 <div className="column is-5">
                   <div className="is-flex gap-2 is-align-items-center">
                     <figure class="image is-32x32">
-                      <img className="is-rounded" alt="" src={profile ? (profile.url ? profile.url : profiled) : profiled} style={{ height: "32px", objectFit: "cover", objectPosition: "top" }} />
+                      <img className="is-rounded" alt="" src={userById ? (userById.url ? userById.url : profiled) : profiled} style={{ height: "32px", objectFit: "cover", objectPosition: "top" }} />
                     </figure>
                     <p>{userById.username}</p>
                   </div>

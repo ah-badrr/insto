@@ -94,7 +94,7 @@ const Navbar = () => {
             </NavLink>
             <li className="p-0" to={"/login"}>
               <figure className="navimg image p-0">
-                <img className="is-rounded border border-2 d-inline-block" alt="" src={profile ? (profile.url ? profile.url : profiled) : profiled} style={{ height: "30px", width: "30px", objectFit: "cover", objectPosition: "top" }} />
+                <img className="is-rounded border border-2 d-inline-block" alt="" src={userById ? (userById.url ? userById.url : profiled) : profiled} style={{ height: "30px", width: "30px", objectFit: "cover", objectPosition: "top" }} />
               </figure>
               <span className="navitem">{userById.username}</span>
             </li>
@@ -116,7 +116,7 @@ const Navbar = () => {
                       <tr className="p-0 border-0">
                         <td className="border-0">
                           <NavLink to={`/profile/visit/${uid}/${user.id}`} className="con">
-                            <img class="rounded-circle" alt="" style={{ height: "64px", width: "64px", objectFit: "cover", objectPosition: "top" }} src={user.profile ? (user.profile.url ? user.profile.url : profiled) : profiled} />
+                            <img class="rounded-circle" alt="" style={{ height: "64px", width: "64px", objectFit: "cover", objectPosition: "top" }} src={user ? (user.url ? user.url : profiled) : profiled} />
                             <p className="text-black username">{user.username}</p>
                           </NavLink>
                         </td>

@@ -4,20 +4,22 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import profiled from "../images/profile.png"
+import profiled from "../images/profile.png";
 
 const EditProfile = () => {
+  const [user, setUser] = useState([]);
   const [bio, setBio] = useState("");
   const [job, setJob] = useState("");
   const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const [file, setFile] = useState("");
   const { uid } = useParams();
   const [preview, setPreview] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    getProfile();
-    getUserById();
+    // getProfile();
+    getUser();
   }, []);
 
   const loadImage = (e) => {
@@ -26,21 +28,41 @@ const EditProfile = () => {
     setPreview(URL.createObjectURL(image));
   };
 
+  // const updateProfile = async (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+  //   formData.append("userId", uid);
+  //   formData.append("bio", bio);
+  //   formData.append("job", job);
+  //   try {
+  //     await axios.patch(`http://localhost:5000/profiles/${uid}`, formData, {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
+  //     await axios.patch(`http://localhost:5000/users/${uid}`, {
+  //       username: name,
+  //     });
+  //     navigate(`/profile/${uid}`);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   const updateProfile = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("userId", uid);
+    formData.append("username", name);
+    formData.append("password", password);
     formData.append("bio", bio);
     formData.append("job", job);
     try {
-      await axios.patch(`http://localhost:5000/profiles/${uid}`, formData, {
+      await axios.patch(`http://localhost:5000/users/${uid}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-        },
-      });
-      await axios.patch(`http://localhost:5000/users/${uid}`, {
-        username: name,
+        }
       });
       navigate(`/profile/${uid}`);
     } catch (error) {
@@ -48,24 +70,29 @@ const EditProfile = () => {
     }
   };
 
-  const getUserById = async () => {
+  const getUser = async () => {
     const response = await axios.get(`http://localhost:5000/users/${uid}`);
     setName(response.data.username);
-  };
-  const getProfile = async () => {
-    const response = await axios.get(`http://localhost:5000/profiles/user/${uid}`);
+    setPassword(response.data.password);
+    setUser(response.data);
     setBio(response.data.bio);
     setJob(response.data.job);
     setPreview(response.data.url);
   };
+  // const getProfile = async () => {
+  //   const response = await axios.get(`http://localhost:5000/profiles/user/${uid}`);
+  //   setBio(response.data.bio);
+  //   setJob(response.data.job);
+  //   setPreview(response.data.url);
+  // };
   return (
     <Layout>
       <div className="editpro">
         <h1 className="h4">Edit Profil</h1>
         <form onSubmit={updateProfile}>
-          <div className="editimg field has-background-grey-lighter is-align-items-center rounded-4" >
+          <div className="editimg field has-background-grey-lighter is-align-items-center rounded-4">
             {/* <figure class="image is-128x128"> */}
-              <img alt="" class="" src={preview ? preview : profiled} style={{ objectFit: "cover", objectPosition: "center" }} />
+            <img alt="" class="" src={preview ? preview : profiled} style={{ objectFit: "cover", objectPosition: "center" }} />
             {/* </figure> */}
             <div class="file">
               <label class="file-label">
@@ -85,6 +112,12 @@ const EditProfile = () => {
             </label>
             <input value={name} onChange={(e) => setName(e.target.value)} id="name" type="text" className="input" />
           </div>
+          <div className="field mt-5 pt-5">
+            <label htmlFor="name" className="label">
+              Password
+            </label>
+            <input value={password} onChange={(e) => setPassword(e.target.value)} id="name" type="password" className="input" />
+          </div>
           <div className="field">
             <label htmlFor="job" className="label">
               Pekerjaan
@@ -97,11 +130,11 @@ const EditProfile = () => {
             </label>
             <input value={bio} onChange={(e) => setBio(e.target.value)} id="bio" type="text" className="input" />
           </div>
-          <div className="field mt-5 pt-5 is-flex is-justify-content-space-between" >
-            <NavLink to={`/profile/${uid}`} type="button" className="button is-outlined is-danger " >
+          <div className="field mt-5 pt-5 is-flex is-justify-content-space-between">
+            <NavLink to={`/profile/${uid}`} type="button" className="button is-outlined is-danger ">
               Cancel
             </NavLink>
-            <button type="submit" className="button is-primary is-outlined " >
+            <button type="submit" className="button is-primary is-outlined ">
               Simpan
             </button>
           </div>

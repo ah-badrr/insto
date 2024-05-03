@@ -14,13 +14,13 @@ const Profile = () => {
   const [posts, setPosts] = useState([]);
   const [follower, setFollower] = useState([]);
   const [following, setFollowing] = useState([]);
-  const [profile, setProfile] = useState([]);
+  // const [profile, setProfile] = useState([]);
   const { uid } = useParams();
 
   useEffect(() => {
     getPosts();
     getUserById();
-    getProfile();
+    // getProfile();
     getRelation();
     // deletePost();
     // getState();
@@ -43,10 +43,10 @@ const Profile = () => {
     setFollowing(response.data);
   };
 
-  const getProfile = async () => {
-    const response = await axios.get(`http://localhost:5000/profiles/user/${uid}`);
-    setProfile(response.data);
-  };
+  // const getProfile = async () => {
+  //   const response = await axios.get(`http://localhost:5000/profiles/user/${uid}`);
+  //   setProfile(response.data);
+  // };
 
   const deletePost = async (id) => {
     try {
@@ -62,7 +62,7 @@ const Profile = () => {
       <div className="profile m-0 p-0" style={{ height: "100vh", overflowY: "auto", paddingBottom: "5rem" }}>
         <div className="protop m-0 row gap-0 " style={{ width: "100%" }}>
           <div className="col-3 px-0  is-flex proimg">
-            <img className="rounded-circle" alt="" src={profile ? (profile.url ? profile.url : profiled) : profiled} style={{ objectFit: "cover", objectPosition: "top" }} />
+            <img className="rounded-circle" alt="" src={userById ? (userById.url ? userById.url : profiled) : profiled} style={{ objectFit: "cover", objectPosition: "top" }} />
           </div>
           <div className="col-8 col-sm-7 col-lg-5 is-flex is-flex-direction-column has-align-items-center" style={{ height: "100%" }}>
             <h4 className="h4 mb-4 p-0">
@@ -82,8 +82,8 @@ const Profile = () => {
                 <span className="has-text-weight-bold">{following.length}</span> mengikuti
               </li>
             </ul>
-            <p className="text-secondary probio">{profile ? (profile.job ? profile.job : "none") : "none"}</p>
-            <p className=" probio">{profile ? (profile.bio ? profile.bio : "none") : "none"}</p>
+            <p className="text-secondary probio">{userById ? (userById.job ? userById.job : "none") : "none"}</p>
+            <p className=" probio">{userById ? (userById.bio ? userById.bio : "none") : "none"}</p>
           </div>
         </div>
         <div className="protom p-0">
