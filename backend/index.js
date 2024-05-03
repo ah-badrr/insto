@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import UserRoute from "./routes/UserRoute.js";
-import ProfileRoute from "./routes/ProfileRoute.js";
 import MessageRoute from "./routes/MessageRoute.js";
 import PostRoute from "./routes/PostRoute.js";
 import LikeRoute from "./routes/LikeRoute.js";
@@ -12,8 +11,6 @@ import db from "./config/Database.js";
 import FileUpload from "express-fileupload";
 import http from "http";
 import { Server } from "socket.io";
-// import mysql from "mysql";
-// import multer from "multer";
 
 const app = express();
 app.use(cors());
@@ -21,7 +18,6 @@ app.use(express.json());
 app.use(FileUpload());
 app.use(express.static("public"));
 app.use(UserRoute);
-app.use(ProfileRoute);
 app.use(MessageRoute);
 app.use(PostRoute);
 app.use(SaveRoute);

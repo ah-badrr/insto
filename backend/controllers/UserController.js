@@ -1,13 +1,12 @@
 import Message from "../models/MessageModel.js";
 import Post from "../models/PostModel.js";
-import Profile from "../models/ProfileModel.js";
 import User from "../models/UserModel.js";
 import path from "path";
 import fs from "fs";
 
 export const getUsers = async (req, res) => {
   try {
-    const response = await User.findAll({ include: [Profile, Message, Post] });
+    const response = await User.findAll({ include: [Message, Post] });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
@@ -20,7 +19,7 @@ export const getUserById = async (req, res) => {
       where: {
         id: req.params.id,
       },
-      include: [Profile, Message, Post],
+      include: [Message, Post],
     });
     res.status(200).json(response);
   } catch (error) {
@@ -34,7 +33,7 @@ export const getUserByName = async (req, res) => {
       where: {
         username: req.params.name,
       },
-      include: [Profile, Message, Post],
+      include: [Message, Post],
     });
     res.status(200).json(response);
   } catch (error) {
@@ -69,19 +68,6 @@ export const userLogin = async (req, res) => {
     console.log(error.message);
   }
 };
-
-// export const updateUser = async (req, res) => {
-//   try {
-//     await User.update(req.body, {
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
-//     res.status(200).json({ msg: "User Updated" });
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
 
 export const updateUser = async (req, res) => {
   const user = await User.findOne({
@@ -142,19 +128,6 @@ export const updateUser = async (req, res) => {
     console.log(error.message);
   }
 };
-
-// export const deleteUser = async (req, res) => {
-//   try {
-//     await User.destroy({
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
-//     res.status(200).json({ msg: "User Deleted" });
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
 
 export const deleteUser = async (req, res) => {
   const user = await User.findOne({
