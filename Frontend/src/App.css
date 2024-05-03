@@ -1,0 +1,684 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'Poppins';
+
+    &::-webkit-scrollbar {
+        display: none !important;
+    }
+}
+
+.bocil {
+    background-image: url('https://picsum.photos/200/300');
+}
+
+.postcard {
+    background-color: #00000000;
+    cursor: pointer;
+    transition: .3s;
+
+    p {
+        transition: .3s;
+        opacity: 0;
+    }
+
+    &:hover {
+        background-color: #00000073;
+
+        p {
+            opacity: 1;
+        }
+    }
+}
+
+.mdlpost:target {
+    display: flex !important;
+}
+
+.mdlChat:target {
+    display: flex !important;
+}
+
+.dropPost:hover {
+    display: block !important;
+}
+
+.dropTog:active~.dropPost {
+    display: flex !important;
+}
+
+.dropMes:hover {
+    display: block !important;
+}
+
+.mesTog:hover~.dropMes {
+    display: block !important;
+}
+
+.leftc {
+    left: 55px;
+}
+
+.rightc {
+    right: 250px;
+}
+
+.noscroll {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.inputku {
+    &:focus {
+        outline: 3px solid #ffffff !important;
+        /* outline-color: #ffffff !important; */
+    }
+}
+
+
+
+
+@media (max-width: 425px) {
+    .navbar {
+        gap: .7rem !important;
+
+        .navlogo {
+            display: none !important;
+        }
+
+        .listmenu {
+            gap: .5rem !important;
+        }
+
+    }
+}
+
+@media (min-width: 0px) {
+    .navbar {
+        display: flex !important;
+        /* min-height: 50vh !important; */
+        position: fixed !important;
+        width: 100vw;
+        bottom: 0px !important;
+        padding: 0 !important;
+        height: 50px !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 2rem !important;
+        box-shadow: 0 0 10px #000;
+
+        .logo {
+            /* display: none !important; */
+        }
+
+        .listmenu {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 2rem !important;
+        }
+
+        .linkitem {
+            color: black !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .navitem {
+            display: none !important;
+        }
+
+        .navimg {
+            display: none !important;
+        }
+
+    }
+
+    .profile {
+        .protop {
+            padding: 30px 10px 20px;
+            /* justify-content: space-between; */
+            justify-content: center;
+
+            .proimg {
+                /* flex-direction: row-reverse; */
+                justify-content: center;
+
+                img {
+
+                    height: 96px;
+                    width: 96px;
+                }
+            }
+
+            .prostate {
+                gap: .8rem;
+
+                li {
+                    font-size: .9rem;
+                }
+            }
+
+            .probio {
+                font-size: .9rem;
+            }
+        }
+
+        .protom {
+
+            .postpro {
+                width: 100%;
+                padding: 10px 0px 30px;
+
+                .postfl {
+                    gap: 1.25vw;
+
+                    .postsize {
+                        width: 32.5vw;
+                        height: 32.5vw;
+                    }
+                }
+            }
+        }
+    }
+
+    .explore {
+        /* background-color: blue; */
+
+        .postpro {
+            width: 100%;
+            padding: 10px 0px 30px;
+
+            .postfl {
+                gap: 1.25vw;
+
+                .postsize {
+                    width: 32.5vw;
+                    height: 32.5vw;
+                }
+            }
+        }
+
+    }
+
+    .postcar {
+        gap: 0 !important;
+        width: 80%;
+
+        .postmedia {
+            max-height: 60vh;
+        }
+
+        .postcom {
+            border-top: 1.5px solid #0000002f !important;
+        }
+    }
+
+    .mdlpost {
+        height: 100vh !important;
+        padding: 50px 0;
+        /* padding-top: 100px; */
+        overflow-y: auto !important;
+        /* align-items: start !important; */
+        justify-content: start !important;
+        /* justify-content: center !important; */
+
+        .modal-background {
+            /* overflow-y: auto !important; */
+            height: 100vh;
+            position: fixed;
+        }
+
+        /* position: fixed !important;
+        top: 0 !important; 
+        bottom: 0 !important ;
+        width: 100vw; */
+    }
+
+    .editpro {
+        padding: 25px 15px 75px;
+        height: 100vh;
+        overflow-y: auto;
+
+        h1 {
+            text-align: center;
+        }
+
+        .editimg {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            gap: 10px;
+
+            img {
+                max-height: 300px;
+                border-radius: 10px;
+            }
+        }
+
+    }
+
+    .message {
+        .list {
+            /* background-color: red; */
+            overflow: hidden;
+
+            .contact {
+                border: 10px solid bule;
+                /* background-color: red; */
+
+                td {
+                    .con {
+                        display: flex;
+                        gap: 15px;
+                        align-items: center;
+                        justify-content: center;
+
+                        .username {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .chat {
+            .card-header {
+                box-shadow: none;
+                border-bottom: 1.5px solid #0000002f;
+            }
+
+            .card-body {
+                .mesTog {
+                    max-width: 50vw;
+                }
+            }
+
+            .card-footer {
+                border-top: 1.5px solid #0000002f;
+                padding-bottom: 60px;
+            }
+        }
+    }
+
+    .navout {
+        /* background-color: red !important; */
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar {
+        height: 100vh !important;
+        position: relative !important;
+        width: auto !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        border-right: 1.5px solid #0000002f;
+        padding: 2rem 0 2rem !important;
+
+        .brand {
+            display: inline-block !important;
+            color: black;
+            font-size: 1.2rem;
+        }
+
+        .navlogo {
+            /* border: 1px solid black; */
+
+            .logo {
+                display: none;
+            }
+        }
+
+        .listmenu {
+            flex-direction: column !important;
+            align-items: start !important;
+        }
+
+        .listbottom {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            .navimg {
+                display: inline-block !important;
+            }
+        }
+    }
+
+    .profile {
+        .protop {
+            justify-content: center;
+            padding: 30px 15px 20px;
+
+            .proimg {
+                align-items: center;
+
+                img {
+                    height: 128px;
+                    width: 128px;
+                }
+            }
+
+            .prostate {
+                gap: 1rem;
+
+                li {
+                    font-size: 1rem;
+                }
+            }
+
+            .probio {
+                font-size: 1rem;
+            }
+        }
+
+        .protom {
+
+            .postpro {
+                padding: 10px 5vw 30px;
+
+                /* padding: 10px 20px 50px; */
+                .postfl {
+                    gap: .5vw;
+
+                    .postsize {
+                        width: 24.11vw;
+                        height: 24.11vw;
+                    }
+                }
+            }
+        }
+    }
+
+    .explore {
+        .postpro {
+            padding: 10px 5vw 30px;
+
+            /* padding: 10px 20px 50px; */
+            .postfl {
+                gap: .5vw;
+
+                .postsize {
+                    width: 24.11vw;
+                    height: 24.11vw;
+                }
+            }
+        }
+    }
+
+    .postcar {
+        width: 100%;
+
+        .postcom {
+            border-top: none !important;
+        }
+    }
+
+    .editpro {
+        padding: 25px 50px 75px;
+
+        h1 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .editimg {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 0px;
+
+            img {
+                height: 150px;
+                width: 150px;
+                border-radius: 50%;
+            }
+        }
+
+        .field {
+            /* width: 50%; */
+        }
+
+    }
+
+    .mdlpost {
+        height: 100vh !important;
+        padding: 50px 0;
+        /* padding-top: 100px; */
+        overflow-y: auto !important;
+        /* align-items: center !important; */
+        justify-content: start !important;
+        /* justify-content: center !important; */
+
+        .modal-background {
+            /* overflow-y: auto !important; */
+            height: 100vh;
+            position: fixed;
+        }
+
+        /* position: fixed !important;
+        top: 0 !important; 
+        bottom: 0 !important ;
+        width: 100vw; */
+    }
+
+    .message {
+        .list {
+
+            .contact {
+
+                td {
+                    .con {
+                        display: flex;
+                        gap: 15px;
+                        align-items: center;
+                        padding-left: 5px;
+                        justify-content: start;
+
+                        .username {
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+        }
+
+        .chat {
+            .card-header {}
+
+            .card-body {
+                .mesTog {
+                    max-width: 45vw;
+                }
+            }
+
+            .card-footer {
+                padding-bottom: 0px;
+            }
+        }
+    }
+
+
+    .addpost {
+        width: 80%;
+    }
+}
+
+@media (min-width: 1015px) {
+    .navbar {
+        align-items: start !important;
+        padding: 2rem 0 2rem 2rem !important;
+        box-shadow: none !important;
+        border-right: 1.5px solid #0000002f;
+
+        .navitem {
+            color: black;
+            margin-left: .7rem;
+            display: inline-block !important;
+        }
+
+        .linkitem {
+            display: flex !important;
+            /* align-items: center !important; */
+        }
+
+        .navlogo {
+            .logo {
+                display: inline-block;
+                color: #000;
+                margin-right: .5rem;
+            }
+
+            .brand {
+                margin-left: 0;
+                font-size: 1.5rem;
+                /* font-weight: 500; */
+            }
+        }
+    }
+
+    .profile {
+        .protop {
+            padding: 70px 0 20px;
+
+            .proimg {
+                align-items: center;
+
+                img {
+                    height: 150px;
+                    width: 150px;
+                }
+            }
+
+            .prostate {
+                gap: 1rem;
+
+                li {
+                    font-size: 1rem;
+                }
+            }
+
+            .probio {
+                font-size: 1rem;
+            }
+        }
+
+        .protom {
+            width: 775px;
+            margin: auto;
+
+            .postpro {
+                padding: 10px 0 30px;
+
+                /* padding: 10px 20px 50px; */
+                .postfl {
+                    gap: 5px;
+
+                    .postsize {
+                        width: 255px;
+                        height: 255px;
+                    }
+                }
+            }
+        }
+    }
+
+    .explore {
+        width: 775px;
+        margin: auto;
+
+        .postpro {
+            padding: 10px 0 30px;
+
+            /* padding: 10px 20px 50px; */
+            .postfl {
+                gap: 5px;
+
+                .postsize {
+                    width: 255px;
+                    height: 255px;
+                }
+            }
+        }
+    }
+
+    .message {
+        .list {
+
+            .contact {
+
+                td {
+                    .con {
+                        display: flex;
+                        gap: 15px;
+                        align-items: center;
+                        padding-left: 15px;
+                        justify-content: start;
+
+                    }
+                }
+            }
+        }
+    }
+
+    .postcar {
+        width: 90%;
+    }
+
+    .mdlpost {
+        padding: 50px;
+
+    }
+
+    .addpost {
+        width: 70%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .addpost {
+        width: 60%;
+    }
+
+    .profile {
+
+        .protom {
+            width: 940px;
+
+            .postpro {
+                padding: 10px 0 30px;
+
+                /* padding: 10px 20px 50px; */
+                .postfl {
+                    gap: 5px;
+
+                    .postsize {
+                        width: 310px;
+                        height: 310px;
+                    }
+                }
+            }
+        }
+    }
+
+    .explore {
+        width: 940px;
+
+        .postpro {
+            padding: 10px 0 30px;
+
+            /* padding: 10px 20px 50px; */
+            .postfl {
+                gap: 5px;
+
+                .postsize {
+                    width: 310px;
+                    height: 310px;
+                }
+            }
+        }
+    }
+}
