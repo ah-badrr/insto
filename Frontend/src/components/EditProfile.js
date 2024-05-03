@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import profiled from "../images/profile.png";
+import md5 from "md5";
 
 const EditProfile = () => {
   const [user, setUser] = useState([]);
@@ -32,7 +33,7 @@ const EditProfile = () => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("username", name);
-    formData.append("password", password);
+    formData.append("password", md5(password));
     formData.append("bio", bio);
     formData.append("job", job);
     try {
@@ -86,7 +87,7 @@ const EditProfile = () => {
             <label htmlFor="name" className="label">
               Password
             </label>
-            <input value={password} onChange={(e) => setPassword(e.target.value)} id="name" type="password" className="input" />
+            <input onChange={(e) => setPassword(e.target.value)} id="name" type="text" className="input" />
           </div>
           <div className="field">
             <label htmlFor="job" className="label">
