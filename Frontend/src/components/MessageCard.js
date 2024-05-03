@@ -13,7 +13,6 @@ const MessageCard = () => {
   const [user2, setUser2] = useState([]);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState([]);
-  const [profileTwo, setProfileTwo] = useState([]);
   const [user1, setUser1] = useState([]);
   const { uid, id } = useParams();
 
@@ -33,20 +32,10 @@ const MessageCard = () => {
     try {
       const response = await axios.get(`http://localhost:5000/messages`);
       const user1 = await axios.get(`http://localhost:5000/users/${uid}`);
-      const prof2 = await axios.get(`http://localhost:5000/profiles/user/${id}`);
       const user2 = await axios.get(`http://localhost:5000/users/${id}`);
       setUser2(user2.data);
-      if (prof2.data != null) {
-        setProfileTwo(prof2.data);
-      }
-      if (user1.data != null) {
-        
-        setUser1(user1.data);
-      }
+      setUser1(user1.data);
       setMessages(response.data);
-      // getuser2();
-      // getuser1();
-      // getProfileTwo();
     } catch (error) {}
   };
 

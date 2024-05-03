@@ -7,22 +7,18 @@ import { faMessage, faHeart as heart } from "@fortawesome/free-regular-svg-icons
 import { faHeart, faEllipsisVertical, faMessage as meso } from "@fortawesome/free-solid-svg-icons";
 import PostCards from "../components/PostCards";
 import axios from "axios";
-import SavedPost from "../components/SavedPost";
 
 const Profile = () => {
   const [userById, setUserById] = useState([]);
   const [posts, setPosts] = useState([]);
   const [follower, setFollower] = useState([]);
   const [following, setFollowing] = useState([]);
-  // const [profile, setProfile] = useState([]);
   const { uid } = useParams();
 
   useEffect(() => {
     getPosts();
     getUserById();
-    // getProfile();
     getRelation();
-    // deletePost();
     // getState();
   }, [0]);
 
@@ -42,11 +38,6 @@ const Profile = () => {
     setFollower(res.data);
     setFollowing(response.data);
   };
-
-  // const getProfile = async () => {
-  //   const response = await axios.get(`http://localhost:5000/profiles/user/${uid}`);
-  //   setProfile(response.data);
-  // };
 
   const deletePost = async (id) => {
     try {

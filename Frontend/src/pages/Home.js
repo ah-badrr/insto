@@ -12,7 +12,6 @@ const Home = () => {
   const { uid } = useParams();
 
   useEffect(() => {
-    // getUserById();
     getPosts();
   }, [0]);
 
@@ -23,10 +22,6 @@ const Home = () => {
     setPosts(response.data);
   };
 
-  // const getUserById = async () => {
-  //   const response = await axios.get(`http://localhost:5000/users/${uid}`);
-  //   setUserById(response.data);
-  // };
   return (
     <Layout>
       <div className="py-5" style={{ overflowY: "auto", height: "100%" }}>

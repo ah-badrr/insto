@@ -4,13 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faSearch, faUser, faRightToBracket, faCab } from "@fortawesome/free-solid-svg-icons";
 import { faPaperPlane, faCircleUser, faCompass, faSquarePlus } from "@fortawesome/free-regular-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import AddPost from "./AddPost";
 import axios from "axios";
 import profiled from "../images/profile.png";
+import Search from "./Search";
 
 const Navbar = () => {
   const [postc, setPostc] = useState(false);
-  const [profile, setProfile] = useState([]);
   const [search, setSearch] = useState([]);
   const [state, setState] = useState(false);
   const [users, setUsers] = useState([]);
@@ -18,7 +17,6 @@ const Navbar = () => {
   const { uid } = useParams();
 
   useEffect(() => {
-    getProfile();
     getUserById();
     getUsers();
   }, [0]);
@@ -31,15 +29,6 @@ const Navbar = () => {
     }
   };
 
-  const postCard = () => {
-    setPostc((postc) => !postc);
-  };
-
-  const getProfile = async () => {
-    const response = await axios.get(`http://localhost:5000/profiles/user/${uid}`);
-    setProfile(response.data);
-  };
-
   const getUserById = async () => {
     const response = await axios.get(`http://localhost:5000/users/${uid}`);
     setUserById(response.data);
@@ -50,7 +39,6 @@ const Navbar = () => {
   };
 
   let cari = state ? "active" : "";
-  let buat = postc ? " is-active" : null;
   return (
     <>
       <ul style={{}} className="navbar m-0">
@@ -101,33 +89,7 @@ const Navbar = () => {
           </ul>
         </li>
       </ul>
-      <div className={`search ${cari}`}>
-        <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Cari Kontak" className="input mb-1" style={{ width: "100%" }} />
-        <div className="list">
-          <table className="table table-hover m-0 p-0">
-            <tbody className="m-0 p-0">
-              {users
-                .filter((item) => {
-                  return search.toString().toLowerCase() == "" ? item : item.username.toString().toLowerCase().includes(search);
-                })
-                .map((user) => {
-                  if (user.id != uid) {
-                    return (
-                      <tr className="p-0 border-0">
-                        <td className="border-0">
-                          <NavLink to={`/profile/visit/${uid}/${user.id}`} className="con">
-                            <img class="rounded-circle" alt="" style={{ height: "64px", width: "64px", objectFit: "cover", objectPosition: "top" }} src={user ? (user.url ? user.url : profiled) : profiled} />
-                            <p className="text-black username">{user.username}</p>
-                          </NavLink>
-                        </td>
-                      </tr>
-                    );
-                  }
-                })}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Search state={cari} />
     </>
   );
 };

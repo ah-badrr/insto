@@ -10,7 +10,6 @@ const EditPost = ({ state, btn, cancel, share }) => {
   const [caption, setCaption] = useState("");
   const [file, setFile] = useState("");
   const [userById, setUserById] = useState([]);
-  const [profile, setProfile] = useState([]);
   const { uid } = useParams();
   const { id } = useParams();
   const [preview, setPreview] = useState("");
@@ -19,7 +18,6 @@ const EditPost = ({ state, btn, cancel, share }) => {
   useEffect(() => {
     getUserById();
     getPostById();
-    getProfile();
   }, [0]);
 
   const loadImage = (e) => {
@@ -31,11 +29,6 @@ const EditPost = ({ state, btn, cancel, share }) => {
   const getUserById = async () => {
     const res = await axios.get(`http://localhost:5000/users/${uid}`);
     setUserById(res.data);
-  };
-
-  const getProfile = async () => {
-    const res = await axios.get(`http://localhost:5000/profiles/user/${uid}`);
-    setProfile(res.data);
   };
 
   const getPostById = async () => {
@@ -86,10 +79,8 @@ const EditPost = ({ state, btn, cancel, share }) => {
               <div className="columns">
                 <div className="column border rounded border-2 p-0 pb-2 gap-2 is-flex is-flex-direction-column is-justify-content-end">
                   {preview ? (
-                    //   <figure className="image is-128x128 mb-5">
                     <img src={preview} alt="preview-img" style={{ maxHeight: "70vh", objectFit: "cover" }} />
                   ) : (
-                    //   </figure>
                     ""
                   )}
                   <div class="file is-centered">

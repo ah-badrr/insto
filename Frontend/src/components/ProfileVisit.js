@@ -15,17 +15,13 @@ const ProfileVisit = () => {
   const [posts, setPosts] = useState([]);
   const [follower, setFollower] = useState([]);
   const [following, setFollowing] = useState([]);
-  const [profile, setProfile] = useState([]);
   const { uid, id } = useParams();
 
   useEffect(() => {
     getPosts();
     getUserById();
-    getProfile();
     getRelation();
     cekFollow();
-    // deletePost();
-    // getState();
   }, [0]);
 
   const getPosts = async () => {
@@ -75,13 +71,6 @@ const ProfileVisit = () => {
     const res = await axios.get(`http://localhost:5000/relations/followed/${id}`);
     setFollower(res.data);
     setFollowing(response.data);
-  };
-
-  const getProfile = async () => {
-    const response = await axios.get(`http://localhost:5000/profiles/user/${id}`);
-    if (response) {
-      setProfile(response.data);
-    }
   };
 
   return (

@@ -10,18 +10,12 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as hr } from "@fortawesome/free-regular-svg-icons";
 
 const CommentCard = ({ id, created, username, comment }) => {
-  // const [profile, setProfile] = useState([]);
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    // getProfile();
     getUser();
   }, [0]);
 
-  // const getProfile = async () => {
-  //   const response = await axios.get(`http://localhost:5000/profiles/user/${id}`);
-  //   setProfile(response.data);
-  // };
   const getUser = async () => {
     const response = await axios.get(`http://localhost:5000/users/${id}`);
     setUser(response.data);
@@ -29,11 +23,8 @@ const CommentCard = ({ id, created, username, comment }) => {
 
   return (
     <li className="pl-2 py-1 pr-3 gap-2 is-flex is-justify-content-space-between shadow mb-3 rounded" style={{ maxWidth: "100%", width: "100%", textWrap: "wrap" }}>
-      {/* <figure class="image is-32x32"> */}
-      {/* <CommentCard id={c.userId} /> */}
       <div className="is-flex gap-2">
         <img src={user ? (user.url ? user.url : profiled) : profiled} alt="" className="" style={{ borderRadius: "50%", height: "32px", width: "32px", objectFit: "cover", objectPosition: "center" }} />
-        {/* </figure> */}
         <ul>
           <li className="text-bold has-text-weight-bold" style={{ fontSize: "15px" }}>
             {username}

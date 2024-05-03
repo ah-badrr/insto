@@ -9,7 +9,6 @@ import Profile from "../pages/Profile";
 const AddPost = ({ state, btn, cancel, share }) => {
   const [caption, setCaption] = useState("");
   const [file, setFile] = useState("");
-  const [profile, setProfile] = useState([]);
   const [userById, setUserById] = useState([]);
   const { uid } = useParams();
   const [preview, setPreview] = useState("");
@@ -17,7 +16,6 @@ const AddPost = ({ state, btn, cancel, share }) => {
 
   useEffect(() => {
     getUserById();
-    getProfile();
   }, [0]);
 
   const loadImage = (e) => {
@@ -30,10 +28,7 @@ const AddPost = ({ state, btn, cancel, share }) => {
     const res = await axios.get(`http://localhost:5000/users/${uid}`);
     setUserById(res.data);
   };
-  const getProfile = async () => {
-    const res = await axios.get(`http://localhost:5000/profiles/user/${uid}`);
-    setProfile(res.data);
-  };
+
   const savePost = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -76,10 +71,8 @@ const AddPost = ({ state, btn, cancel, share }) => {
               <div className="columns">
                 <div className="column border rounded border-2 p-0 pb-2 gap-2 is-flex is-flex-direction-column is-justify-content-end">
                   {preview ? (
-                    //   <figure className="image is-128x128 mb-5">
                     <img src={preview} alt="preview-img" style={{ maxHeight: "70vh", objectFit: "cover" }} />
                   ) : (
-                    //   </figure>
                     ""
                   )}
                   <div class="file is-centered">

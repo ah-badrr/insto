@@ -18,7 +18,6 @@ const EditProfile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // getProfile();
     getUser();
   }, []);
 
@@ -27,28 +26,6 @@ const EditProfile = () => {
     setFile(image);
     setPreview(URL.createObjectURL(image));
   };
-
-  // const updateProfile = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-  //   formData.append("userId", uid);
-  //   formData.append("bio", bio);
-  //   formData.append("job", job);
-  //   try {
-  //     await axios.patch(`http://localhost:5000/profiles/${uid}`, formData, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //     });
-  //     await axios.patch(`http://localhost:5000/users/${uid}`, {
-  //       username: name,
-  //     });
-  //     navigate(`/profile/${uid}`);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const updateProfile = async (e) => {
     e.preventDefault();
@@ -79,21 +56,14 @@ const EditProfile = () => {
     setJob(response.data.job);
     setPreview(response.data.url);
   };
-  // const getProfile = async () => {
-  //   const response = await axios.get(`http://localhost:5000/profiles/user/${uid}`);
-  //   setBio(response.data.bio);
-  //   setJob(response.data.job);
-  //   setPreview(response.data.url);
-  // };
+
   return (
     <Layout>
       <div className="editpro">
         <h1 className="h4">Edit Profil</h1>
         <form onSubmit={updateProfile}>
           <div className="editimg field has-background-grey-lighter is-align-items-center rounded-4">
-            {/* <figure class="image is-128x128"> */}
             <img alt="" class="" src={preview ? preview : profiled} style={{ objectFit: "cover", objectPosition: "center" }} />
-            {/* </figure> */}
             <div class="file">
               <label class="file-label">
                 <input id="files" class="file-input" type="file" name="file" onChange={loadImage} />

@@ -14,20 +14,12 @@ const Login = () => {
     e.preventDefault();
     try
     {
-      // const pas = 
       const res = await axios.get(`http://localhost:5000/users/login/${username}&&${md5(password)}`);
       if (res.data.Login) {
-        const pro = await axios.get(`http://localhost:5000/profiles/user/${res.data.Data.id}`);
-        if (pro.data == null) {
-          await axios.post("http://localhost:5000/profiles", {
-            userId: res.data.Data.id,
-          });
-        }
         navigate(`/profile/${res.data.Data.id}`);
       } else {
         alert("Login failed");
       }
-      // console.log(res);
     } catch (error) {
       console.log(error);
     }

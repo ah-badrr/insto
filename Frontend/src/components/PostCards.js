@@ -10,13 +10,11 @@ import Moment from "react-moment";
 import "moment-timezone";
 import moment, { now } from "moment";
 import "moment/locale/id";
-import EditPost from "./EditPost";
 import profiled from "../images/profile.png";
 import CommentCard from "./CommentCard";
 
 const PostCards = ({ user, caption, id, createdAt, image, likes, type, comments, drop }) => {
   const [userById, setUserById] = useState([]);
-  const [profile, setProfile] = useState([]);
   const [likeCount, setLikeCount] = useState([]);
   const [comment, setComment] = useState([]);
   const [comCard, setComCard] = useState(false);
@@ -27,28 +25,19 @@ const PostCards = ({ user, caption, id, createdAt, image, likes, type, comments,
   const { uid } = useParams();
   const [comm, setComm] = useState("");
   const start = moment().startOf("hour").fromNow();
-  const [postc, setPostc] = useState(false);
-  const [pro, setPro] = useState([]);
 
   useEffect(() => {
     likes();
     getUserById();
-    getProfile();
     cekSave();
     cekLike();
     cekFollow();
     getComments();
-    // getPro();
   }, [0]);
 
   const getUserById = async () => {
     const response = await axios.get(`http://localhost:5000/users/${user}`);
     setUserById(response.data);
-  };
-
-  const getProfile = async () => {
-    const response = await axios.get(`http://localhost:5000/profiles/user/${user}`);
-    setProfile(response.data);
   };
 
   const cekLike = async () => {
@@ -200,7 +189,6 @@ const PostCards = ({ user, caption, id, createdAt, image, likes, type, comments,
   let lk = like ? faHeart : heart;
   let fl = follow ? "d-none" : "d-inline-block";
   let sv = save ? faBookmark : br;
-  let buat = postc ? " is-active" : null;
   let lks = like ? "text-danger" : null;
   return (
     <>
